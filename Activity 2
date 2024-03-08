@@ -6,21 +6,29 @@
         Property: "CustomerKey",
         SimpleOperator: "isNotNull",
         Value: ""
-      }
-  ,
+      },
+
       opts = {
         BatchSize: 10
+      },
+
+      var props = {
+        QueryAllAccounts: false
       };
+
+      if(post.reqID) props.ContinueRequest = post.reqID;
+
   var result = [],
       moreData = true,
       reqID = req = null;
+
   while (moreData) {
     moreData = false;
     if (reqID == null) {
       req = api.retrieve("DataExtension", columns, filter);
     }
     else {
-      req = api.getNextBatch("DataExtension", reqID);
+      req = api.retrieve("DataExtension", columns, filter, opts, props);
     }
     if (req) {
       moreData = req.HasMoreRows;
