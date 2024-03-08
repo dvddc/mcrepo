@@ -28,5 +28,5 @@
       result.push(req.Results.length);
     }
   }
-  Write("Version 1 " + Stringify(result));
+  Write("Version 2 " + Stringify(result));
 </script>
