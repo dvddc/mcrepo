@@ -7,11 +7,9 @@
         SimpleOperator: "isNotNull",
         Value: ""
       },
-
       opts = {
         BatchSize: 10
       },
-
       props = {};      
 
   var result = [],
@@ -20,9 +18,11 @@
 
   while (moreData) {
     moreData = false;
-
-    req = api.retrieve("DataExtension", columns, filter);
-
+    
+    if(reqID) props.ContinueRequest = reqID;
+    
+    req = api.retrieve("DataExtension", columns, filter, opts, props);
+    
     if (req) {
       moreData = req.HasMoreRows;
       result.push(req.Results.length);
