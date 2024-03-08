@@ -20,15 +20,9 @@
 
   while (moreData) {
     moreData = false;
-    
-    //if(reqID) props.ContinueRequest = reqID;
-    
-    // if (reqID == null) {
-    //   req = api.retrieve("DataExtension", columns, filter);
-    // }
-    // else {
+
     req = api.retrieve("DataExtension", columns, filter, opts, props);
-    // }
+
     if (req) {
       moreData = req.HasMoreRows;
       result.push(req.Results.length);
