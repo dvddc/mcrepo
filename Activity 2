@@ -12,11 +12,7 @@
         BatchSize: 10
       },
 
-      var props = {
-        QueryAllAccounts: false
-      };
-
-      if(post.reqID) props.ContinueRequest = post.reqID;
+      props = {};      
 
   var result = [],
       moreData = true,
@@ -24,12 +20,15 @@
 
   while (moreData) {
     moreData = false;
-    if (reqID == null) {
-      req = api.retrieve("DataExtension", columns, filter);
-    }
-    else {
-      req = api.retrieve("DataExtension", columns, filter, opts, props);
-    }
+    
+    if(reqID) props.ContinueRequest = reqID;
+    
+    // if (reqID == null) {
+    //   req = api.retrieve("DataExtension", columns, filter);
+    // }
+    // else {
+    req = api.retrieve("DataExtension", columns, filter, opts, props);
+    // }
     if (req) {
       moreData = req.HasMoreRows;
       result.push(req.Results.length);
