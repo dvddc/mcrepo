@@ -2,52 +2,14 @@
   <body>
     <script runat="server" language="javascript">
       Platform.Load("core", "1.1.1");
-      var status = [0];
-      var config = {
-        authUrl: "https://mc4fr7rnvdyszcxppqbhvywvjcd4.auth.marketingcloudapis.com/v2/token",
-        restUrl: "https://mc4fr7rnvdyszcxppqbhvywvjcd4.rest.marketingcloudapis.com/interaction/v1/interactions",
-        payload: {
-          "grant_type": "client_credentials",
-          "client_id": "nk64ql94zu5be8w1arbu7s17",
-          "client_secret": "XObCbKmMl0C5BchFkJtuCPBg"
-        }
-      };    
-      
-      try {
-        var accessToken = getAccessToken(config);
-        var journeyNames = getJourneyNames(config, accessToken);
-        //Write(Stringify(journeyNames));
-        for(var i in journeyNames) {
-          //Write(journeyNames[i]);
-          var journeyName = journeyNames[i];
-          Write(journeyName);
-          //Platform.Function.InsertDE("David_Journey_Names",["Journey_Name"],[journeyName]);
-          //Platform.Function.InsertDE("David Journey Names",["Journey_Name"],[journeyObjArr[i].name]);
-        }        
-      } catch (error) {
-        Write ("error: " + error);
-      }
-      
-      
-      function getAccessToken(configVal) {
-        var authApi = HTTP.Post(configVal.authUrl, "application/json", Stringify(configVal.payload), [], []);
-        return Platform.Function.ParseJSON(authApi.Response[0]).access_token;
-      }
+      var version = 3;
 
-      function getJourneyNames(configVal, accessToken) {
-        var apiCall = Platform.Function.HTTPGet(configVal.restUrl, true, 0, ["Authorization"], ["Bearer " + accessToken], status); 
-        var journeyItems = Platform.Function.ParseJSON(apiCall).items;
-        var nameOfTheJourneys = [];
-        for(var i in journeyItems) {
-          //Write(journeyItems[i].name);
-          var journeyName = journeyItems[i].name;
-          nameOfTheJourneys.push(journeyName);
-        }
-        return nameOfTheJourneys;
+      showVersion(version);
+
+      function showVersion(version) {
+        Write("This is version " + version);
       }
+      
     </script>
-    <p>
-      This is version 3.
-    </p>
   </body>
 </html>
