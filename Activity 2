@@ -21,7 +21,7 @@
   while (moreData) {
     moreData = false;
 
-    req = api.retrieve("DataExtension", columns, filter, opts, props);
+    req = api.retrieve("DataExtension", columns, filter);
 
     if (req) {
       moreData = req.HasMoreRows;
