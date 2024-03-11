@@ -21,8 +21,9 @@
     
     if(reqID) props.ContinueRequest = reqID;
     
-    req = api.retrieve("DataExtension", columns, filter, opts, props);
-    
+    //req = api.retrieve("DataExtension", columns, filter, opts, props);
+    req = api.retrieve("DataExtension", columns, filter);
+
     if (req) {
       moreData = req.HasMoreRows;
       result.push(req.Results.length);
