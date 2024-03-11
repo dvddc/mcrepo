@@ -10,7 +10,9 @@
       opts = {
         BatchSize: 10
       },
-      props = {};      
+      props = {
+        QueryAllAccounts: false
+      };      
 
   var result = [],
       moreData = true,
