@@ -22,8 +22,11 @@
     moreData = false;
     
     //if(reqID) props.ContinueRequest = reqID;
-    
-    req = api.retrieve("DataExtension", columns, filter, props);
+
+    Write("opts: " + opts);
+    Write("props: " + props);
+
+    req = api.retrieve("DataExtension", columns, filter, opts, props);
     //req = api.retrieve("DataExtension", columns, filter);
     Write("req: " + req);
 
@@ -32,5 +35,5 @@
       result.push(req.Results.length);
     }
   }
-  Write("Version 3.3" + Stringify(result));
+  Write("Version 3.4" + Stringify(result));
 </script>
