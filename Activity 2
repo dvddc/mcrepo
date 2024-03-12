@@ -23,7 +23,7 @@
     
     //if(reqID) props.ContinueRequest = reqID;
     
-    req = api.retrieve("DataExtension", columns, filter, opts);
+    req = api.retrieve("DataExtension", columns, filter, props);
     //req = api.retrieve("DataExtension", columns, filter);
     Write("req: " + req);
 
