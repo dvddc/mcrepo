@@ -11,7 +11,7 @@
         BatchSize: 10
       },
       props = {
-        QueryAllAccounts: true
+        QueryAllAccounts: false
       };      
 
   var result = [],
