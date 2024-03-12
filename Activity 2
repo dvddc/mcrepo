@@ -25,11 +25,12 @@
     
     req = api.retrieve("DataExtension", columns, filter, opts, props);
     //req = api.retrieve("DataExtension", columns, filter);
+    Write("req: " + req);
 
     if (req) {
       moreData = req.HasMoreRows;
       result.push(req.Results.length);
     }
   }
-  Write("Version 3");
+  Write("Version 3.1");
 </script>
