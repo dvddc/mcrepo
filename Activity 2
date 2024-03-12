@@ -31,5 +31,5 @@
       result.push(req.Results.length);
     }
   }
-  Write("Version 2 " + Stringify(result));
+  Write("Time: " + Now());
 </script>
