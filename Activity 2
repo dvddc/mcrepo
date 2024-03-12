@@ -11,7 +11,7 @@
         BatchSize: 10
       },
       props = {
-        QueryAllAccounts: false
+        QueryAllAccounts: true
       };      
 
   var result = [],
@@ -21,7 +21,7 @@
   while (moreData) {
     moreData = false;
     
-    if(reqID) props.ContinueRequest = reqID;
+    //if(reqID) props.ContinueRequest = reqID;
     
     req = api.retrieve("DataExtension", columns, filter, opts, props);
     //req = api.retrieve("DataExtension", columns, filter);
@@ -32,5 +32,5 @@
       result.push(req.Results.length);
     }
   }
-  Write("Version 3.1");
+  Write("Version 3.2");
 </script>
