@@ -1,16 +1,36 @@
 <script runat="server" language="Javascript">
   Platform.Load("core", "1.1.1");
-    var prox = new Script.Util.WSProxy();
-    var props = { QueryAllAccounts: true };
-    var cols = ["Name","CustomerKey","CategoryID","IsSendable"];
-    var filter = {
+  var api = new Script.Util.WSProxy(),
+      columns = ["CustomerKey", "Name", "isSendable"],
+      filter = {
         Property: "CustomerKey",
         SimpleOperator: "isNotNull",
         Value: ""
-    };
-    var opts = {
-        BatchSize: 25
-    };
-    var data = prox.retrieve("DataExtension", cols, filter);    
-    Write("Version 3.3");
+      },
+      opts = {
+        BatchSize: 10
+      },
+      props = {
+        QueryAllAccounts: true
+      };      
+
+  var result = [],
+      moreData = true,
+      reqID = req = null;
+
+  while (moreData) {
+    moreData = false;
+    
+    //if(reqID) props.ContinueRequest = reqID;
+    
+    req = api.retrieve("DataExtension", columns, filter, opts);
+    //req = api.retrieve("DataExtension", columns, filter);
+    Write("req: " + req);
+
+    if (req) {
+      moreData = req.HasMoreRows;
+      result.push(req.Results.length);
+    }
+  }
+  Write("Version 3.3" + Stringify(result));
 </script>
