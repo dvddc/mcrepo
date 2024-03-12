@@ -11,6 +11,6 @@
     var opts = {
         BatchSize: 25
     };
-    var data = prox.retrieve("DataExtension", cols, filter, opts, props);    
+    var data = prox.retrieve("DataExtension", cols, filter);    
     Write("Version 3.3");
 </script>
